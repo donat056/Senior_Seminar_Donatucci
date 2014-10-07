@@ -1,37 +1,9 @@
-\documentclass[12pt]{article}
-
-\setlength{\oddsidemargin}{0in}
-\setlength{\evensidemargin}{0in}
-\setlength{\topmargin}{0in}
-\setlength{\headheight}{0in}
-\setlength{\headsep}{0in}
-\setlength{\textwidth}{6in}
-\setlength{\textheight}{9in}
-\setlength{\parindent}{0in} 
-
-\usepackage{parskip}
-\usepackage{times} %For typeface
-\usepackage{graphicx}
-\usepackage{algorithm}
-\usepackage{algorithm,algorithmic}
-\usepackage[justification=centering]{caption}[2007/12/23]
-\usepackage{url}
-\sloppy
-
-\usepackage{float}
-\newfloat{Query}{tbp}{lop}
-
-\newcommand{\inset}[1]{$\in \{ {#1} \}$}
-
-\newcommand{\citep}[1]{\cite{#1}}
-\newcommand{\PPLR}[1]{$\eta_M$}
-\newcommand{\LLR}[1]{$\eta_L$}
-
-\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\documentclass{sig-alternate}
 
 \title{Modern Techniques of Energy Optimization for Green Cloud Computing}
 
 \author{
+\alignauthor
  		David Donatucci\\
         Division of Science and Mathematics\\
         University of Minnesota, Morris\\
@@ -41,6 +13,7 @@
 \date{} 
 
 \begin{document}
+\conferenceinfo{UMM CSci Senior Seminar Conference, December 2014}{Morris, MN}
 \pagestyle{plain}
 
 \maketitle
@@ -50,6 +23,8 @@
 Place abstract here
 
 \end{abstract}
+
+\keywords{Cloud Computing, Green Computing}
 
 \section{Introduction} \label{sec:intro}
 
@@ -62,16 +37,21 @@ In order for the reader to fully understand the material presented in this paper
 \subsection{Cloud Computing}
 \label{sec:Cloud Computing}
 
-In the last several years, cloud computing has become a predominate service. Cloud computing pertains to both the applications services provided via the Internet as well as the hardware and systems software in data centers. Inside these data centers are an exuberant amount of servers (the hardware) managed by middleware (software that communicates between servers). These components make up what is called the \emph{cloud}.  Usually, large IT firms called \emph{providers} such as Google or Amazon provide the hardware and system software for these large data centers. However, these large IT firms have extra servers and rent them to smaller companies providing a relatively cheap system to compute in the cloud. \cite{Armbrust} 
+In the last several years, cloud computing has become a predominate service. Cloud computing pertains to both the applications services provided via the Internet as well as the hardware and systems software in data centers. Inside these data centers are an exuberant amount of servers (the hardware) managed by middleware (software that communicates between servers). These components make up what is called the \emph{cloud}~\cite{Armbrust}. Usually, large IT firms called \emph{providers} such as Google or Amazon provide the hardware and system software for these large data centers. However, these large IT firms have extra servers and rent them to smaller companies providing a relatively cheap system to compute in the cloud. 
 
 The workload on the cloud is amount of requests for service at a given time. In order to provide a high quality of service, the providers sign a service level agreement, \emph{SLA}, that requires them to fulfill these requests in a set amount of time. 
 
 \subsection{Evolutionary Multiobjective Optimization Algorithms (EMOA)}
 \label{sec:EMOA}
 
-Evolutionary Computation~\cite{poli08:fieldguide} is based around the interactions of individuals. Individuals are similar to organisms in biological evolution. As in biological evolution, a group of individuals makes up a population. In the process of biological evolution and natural selection, organisms within a population compete in order to survive and reproduce. Those individuals best adapted to their environment have the best chance of fulfilling these objectives.  In an evolutionary multiobjective optimization algorithm, EMOA, individuals also compete, but here those individuals that provide closer solutions to the user-defined optimization have the best odds. The goal of EMOAs is to produce individuals that provide quality solutions in a reasonable amount of time. 
+Evolutionary Computation~\cite{poli08:fieldguide} is based around the interactions of individuals. Individuals are similar to organisms in biological evolution. As in biological evolution, a group of individuals makes up a population. In the process of biological evolution and natural selection, organisms within a population compete in order to survive and reproduce. Those individuals best adapted to their environment have the best chance of fulfilling these objectives.  In an evolutionary multiobjective optimization algorithm,~\emph{EMOA}, individuals also compete, but here those individuals that provide closer solutions to all optimizations have the best odds. The goal of EMOAs is to produce a set of individuals that provide quality solutions in a reasonable amount of time. 
 
-At the start of a run, the population is filled with randomly generated individuals. The individuals within this population then compete in order to pass their code on to the next generation, similar to biological evolution. In this work we used tournament selection, where a specified number of individuals are randomly chosen from the population, and those with the best fitness are selected to produce the next generation. These selected individuals can propagate their genetic material to the next generation by one of three transformation methods. The first and most common method is crossover, comparable to sexual reproduction, where two individuals are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. The third and final method is reproduction, where an individual is copied to the next generation, akin to asexual reproduction. There is also an alternative form of reproduction known as elitism, where the best few individuals are copied to the next generation by merit of their fitness alone. Crossover, mutation, and reproduction are utilized many times, across multiple generations, until an ideal or approximate solution is found or until some sort of resource limit is reached.
+At the beginning of an EMOA, a method runs that randomly initializes a population. The randomly generated individuals within this population then compete in order to pass their code on to the next generation, similar to biological evolution. For the purposes of this paper, I will talk about binary tournament selection, although there are many different method to select individuals to breed. Binary tournament selection is where two individuals are randomly chosen from the population, and the individual that is more optimized is selected to produce the next generation. This is performed twice to obtain two parents.  These selected individuals can propagate their genetic material to the next generation by two methods. The first and most common method is crossover, comparable to sexual reproduction, where two individuals are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. Crossover and mutation are utilized across multiple generations, until an optimized solution is found or until some sort of resource limit is reached.
+
+\subsection{Gossip-based Protocol}
+\label{sec:GBP}
+
+
 
 \section{Graph Databases}
 \label{sec:Graph Databases}
