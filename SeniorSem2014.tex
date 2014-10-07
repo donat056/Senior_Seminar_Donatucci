@@ -62,12 +62,14 @@ In order for the reader to fully understand the material presented in this paper
 \subsection{Cloud Computing}
 \label{sec:Cloud Computing}
 
-In the last several years, cloud computing has become a predominate service. Cloud computing pertains to both the applications services provided via the Internet as well as the hardware and systems software in data centers. Inside these data centers are an exuberant amount of servers (the hardware) managed by middleware (software that communicates between servers) which is called the \emph{cloud}.  Usually, large IT firms such as Google or Amazon provide the hardware and system software for these large data centers. However, these large IT firms have extra servers and rent them to smaller companies providing a relatively cheap system to compute in the cloud. 
+In the last several years, cloud computing has become a predominate service. Cloud computing pertains to both the applications services provided via the Internet as well as the hardware and systems software in data centers. Inside these data centers are an exuberant amount of servers (the hardware) managed by middleware (software that communicates between servers). These components make up what is called the \emph{cloud}.  Usually, large IT firms such as Google or Amazon provide the hardware and system software for these large data centers. However, these large IT firms have extra servers and rent them to smaller companies providing a relatively cheap system to compute in the cloud. \cite{Armbrust}
 
-\subsection{Evolutionary Computation (EC)}
-\label{sec:EC}
+\subsection{Evolutionary Multiobjective Optimization Algorithms (EMOA)}
+\label{sec:EMOA}
 
+Evolutionary Computation~\cite{poli08:fieldguide} is based around the interactions of individuals. Individuals are similar to organisms in biological evolution. As in biological evolution, a group of individuals makes up a population. In the process of biological evolution and natural selection, organisms within a population compete in order to survive and reproduce. Those individuals best adapted to their environment have the best chance of fulfilling these objectives.  In an evolutionary multiobjective optimization algorithm, EMOA, individuals also compete, but here those individuals that provide closer solutions to the user-defined optimization have the best odds. The goal of EMOAs is to produce individuals that provide quality solutions in a reasonable amount of time. 
 
+At the start of a run, the population is filled with randomly generated individuals. The individuals within this population then compete in order to pass their code on to the next generation, similar to biological evolution. In this work we used tournament selection, where a specified number of individuals are randomly chosen from the population, and those with the best fitness are selected to produce the next generation. These selected individuals can propagate their genetic material to the next generation by one of three transformation methods. The first and most common method is crossover, comparable to sexual reproduction, where two individuals are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. The third and final method is reproduction, where an individual is copied to the next generation, akin to asexual reproduction. There is also an alternative form of reproduction known as elitism, where the best few individuals are copied to the next generation by merit of their fitness alone. Crossover, mutation, and reproduction are utilized many times, across multiple generations, until an ideal or approximate solution is found or until some sort of resource limit is reached.
 
 \section{Graph Databases}
 \label{sec:Graph Databases}
@@ -84,7 +86,6 @@ In the last several years, cloud computing has become a predominate service. Clo
 \section{Experimental Setup} 
 \label{sec:experiments}
 
-This section explains the details of the configurations used for this research. Subsection~\ref{sec:GPSetup} covers setup of the genetic programming algorithm, and Subsection~\ref{sec:Neo4jSetup} discusses setup of the graph database Neo4j.
 
 \subsection{Genetic Programming Setup}
 \label{sec:GPSetup}
