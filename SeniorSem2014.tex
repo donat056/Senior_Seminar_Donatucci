@@ -29,16 +29,14 @@
 
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
-\title{Analysis of Genetic Programming Ancestry Using a Graph Database}
+\title{Modern Techniques of Energy Optimization for Green Cloud Computing}
 
 \author{
- 		David Donatucci, M. Kirbie Dramdahl, and Nicholas Freitag McPhee\\
+ 		David Donatucci\\
         Division of Science and Mathematics\\
         University of Minnesota, Morris\\
         Morris, MN 56267\\
         donat056@morris.umn.edu\\
-        dramd002@morris.umn.edu\\
-        mcphee@morris.umn.edu\\
 }
 \date{} 
 
@@ -49,22 +47,27 @@
 
 \begin{abstract}
 
-Genetic programming is an artificial intelligence technique that uses concepts from biological evolution such as fitness, mutation, and crossover to manipulate a population of functions, typically represented as trees. Analyzing the complex dynamics of such a system can be challenging. Researchers rarely save or analyze most of the intermediate data from a run, and instead focus on statistical summaries of generations. However, information is lost in this process, precluding potentially important analysis of key events during the run.
-
-Our objective here is to use graph databases to store and analyze the ancestry of individuals. Graph databases are relatively new, and provide features such as queries to obtain data that would be difficult with relational databases. In relational databases, as data sets increase in size, recursive queries become extremely inefficient. By comparison, with a graph database such as Neo4j, the execution time for recursive queries remains relatively constant as the size of data sets grows. Since genetic programming involves a significant number of trees and a multitude of generations, graph databases allow for efficient querying of ancestry that would not be possible with more traditional database systems such as SQL.
-
-Our hope is that by recording and analyzing tree ancestry, we will be able to obtain valuable insight into the evolutionary process of genetic programming. Perhaps most significantly, we hope to discover where trees show significant improvement in fitness and how those improvements are obtained. This will allow for a better understanding of how genetic programming works and provide details for future improvements in the evolutionary computation field.
+Place abstract here
 
 \end{abstract}
 
 \section{Introduction} \label{sec:intro}
 
-This paper demonstrates the usefulness of graph databases in recording and analyzing data produced by GP systems. A description of genetic programming is provided in Section~\ref{Genetic Programming}, and Section~\ref{sec:Graph Databases} discusses graph databases. Section~\ref{sec:experiments} provides details on how we set up our experimental runs. The results of our work are presented in Section~\ref{sec:results}, and ideas for future implementation and applications of this work are presented in Section~\ref{sec:conclusion}.
+This paper demonstrates the usefulness of graph databases in recording and analyzing data produced by GP systems. A description of genetic programming is provided in Section~\ref{Background}, and Section~\ref{sec:Graph Databases} discusses graph databases. Section~\ref{sec:experiments} provides details on how we set up our experimental runs. The results of our work are presented in Section~\ref{sec:results}, and ideas for future implementation and applications of this work are presented in Section~\ref{sec:conclusion}.
 
-\section{Genetic Programming} \label{Genetic Programming}
+\section{Background} \label{Background}
+
+In order for the reader to fully understand the material presented in this paper, I will present some necessary background information.
+
+\subsection{Cloud Computing}
+\label{sec:Cloud Computing}
+
+In the last several years, cloud computing has become a predominate service. Cloud computing pertains to both the applications services provided via the Internet as well as the hardware and systems software in data centers. Inside these data centers are an exuberant amount of servers (the hardware) managed by middleware (software that communicates between servers) which is called the \emph{cloud}.  Usually, large IT firms such as Google or Amazon provide the hardware and system software for these large data centers. However, these large IT firms have extra servers and rent them to smaller companies providing a relatively cheap system to compute in the cloud. 
+
+\subsection{Evolutionary Computation (EC)}
+\label{sec:EC}
 
 
-At the start of a run, the population is filled with randomly generated individuals. The individuals within this population then compete in order to pass their code on to the next generation, similar to biological evolution. In this work we used tournament selection, where a specified number of individuals are randomly chosen from the population, and those with the best fitness are selected to produce the next generation. These selected individuals can propagate their genetic material to the next generation by one of three transformation methods. The first and most common method is crossover, comparable to sexual reproduction, where two individuals are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. The third and final method is reproduction, where an individual is copied to the next generation, akin to asexual reproduction. There is also an alternative form of reproduction known as elitism, where the best few individuals are copied to the next generation by merit of their fitness alone. Crossover, mutation, and reproduction are utilized many times, across multiple generations, until an ideal or approximate solution is found or until some sort of resource limit is reached.
 
 \section{Graph Databases}
 \label{sec:Graph Databases}
