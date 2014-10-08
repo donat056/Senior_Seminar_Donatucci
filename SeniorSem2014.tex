@@ -28,7 +28,7 @@ Place abstract here
 
 \section{Introduction} \label{sec:intro}
 
-This paper demonstrates the usefulness of graph databases in recording and analyzing data produced by GP systems. A description of genetic programming is provided in Section~\ref{Background}, and Section~\ref{sec:Graph Databases} discusses graph databases. Section~\ref{sec:experiments} provides details on how we set up our experimental runs. The results of our work are presented in Section~\ref{sec:results}, and ideas for future implementation and applications of this work are presented in Section~\ref{sec:conclusion}.
+%This paper demonstrates the usefulness of graph databases in recording and analyzing data produced by GP systems. A description of genetic programming is provided in Section~\ref{Background}, and Section~\ref{sec:Graph Databases} discusses graph databases. Section~\ref{sec:experiments} provides details on how we set up our experimental runs. The results of our work are presented in Section~\ref{sec:results}, and ideas for future implementation and applications of this work are presented in Section~\ref{sec:conclusion}.
 
 \section{Background} \label{Background}
 
@@ -44,13 +44,14 @@ The workload on the cloud is amount of requests for service at a given time. In 
 \subsection{Evolutionary Multiobjective Optimization Algorithms (EMOA)}
 \label{sec:EMOA}
 
-Evolutionary Computation~\cite{poli08:fieldguide} is based around the interactions of individuals. Individuals are similar to organisms in biological evolution. As in biological evolution, a group of individuals makes up a population. In the process of biological evolution and natural selection, organisms within a population compete in order to survive and reproduce. Those individuals best adapted to their environment have the best chance of fulfilling these objectives.  In an evolutionary multiobjective optimization algorithm,~\emph{EMOA}, individuals also compete, but here those individuals that provide closer solutions to all optimizations have the best odds. The goal of EMOAs is to produce a set of individuals that provide quality solutions in a reasonable amount of time. 
+Evolutionary Computation~\cite{poli08:fieldguide} is based around the interactions of individuals. Individuals are similar to organisms in biological evolution. As in biological evolution, a group of individuals makes up a population. In the process of biological evolution and natural selection, organisms within a population compete in order to survive and reproduce. Those individuals best adapted to their environment have the best chance of fulfilling these objectives.  In an \emph{evolutionary multiobjective optimization algorithm}, EMOA, individuals also compete, but here those individuals that provide closer solutions to all optimizations have the best odds. The goal of EMOAs is to produce a set of individuals that provide quality solutions in a reasonable amount of time. 
 
-At the beginning of an EMOA, a method runs that randomly initializes a population. The randomly generated individuals within this population then compete in order to pass their code on to the next generation, similar to biological evolution. For the purposes of this paper, I will talk about binary tournament selection, although there are many different method to select individuals to breed. Binary tournament selection is where two individuals are randomly chosen from the population, and the individual that is more optimized is selected to produce the next generation. This is performed twice to obtain two parents.  These selected individuals can propagate their genetic material to the next generation by two methods. The first and most common method is crossover, comparable to sexual reproduction, where two individuals are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. Crossover and mutation are utilized across multiple generations, until an optimized solution is found or until some sort of resource limit is reached.
+At the beginning of an EMOA, a method runs that randomly initializes a population. The randomly generated individuals within this population then compete in order to pass their code on to the next generation, similar to biological evolution. For the purposes of this paper, I will talk about binary tournament selection, although there are many different methods to select individuals to breed. Binary tournament selection is where two individuals are randomly chosen from the population, and the individual that is more optimized is selected as a parent. This is performed twice to obtain two parents.  These selected parents can propagate their genetic material to the next generation by two methods. The first and most common method is crossover, comparable to sexual reproduction, where two parents are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. Crossover and mutation are utilized across multiple generations, until an optimized solution is found or until some sort of resource limit is reached.
 
 \subsection{Gossip-based Protocol}
 \label{sec:GBP}
 
+\emph{Gossip-based}, GB, protocol acts exactly like the name gossip implies. A node which contains new information selects multiple nodes called \emph{peers} to spread the new information to. The selection of peers is often probabilistic. This act is called a round. In the next round, each of the nodes that received the information selects more nodes to spread the information to. As more round are completed all of the nodes start to have the same information. 
 
 
 \section{Graph Databases}
@@ -65,39 +66,39 @@ At the beginning of an EMOA, a method runs that randomly initializes a populatio
 \end{verbatim}
 
 
-\section{Experimental Setup} 
-\label{sec:experiments}
+%\section{Experimental Setup} 
+%\label{sec:experiments}
 
 
-\subsection{Genetic Programming Setup}
-\label{sec:GPSetup}
+%\subsection{Genetic Programming Setup}
+%\label{sec:GPSetup}
 
 
-\section{Results} \label{sec:results}
-
-
-
-\subsection{Number of Initial Individuals With Final Generation Descendants}
-\label{sec:numberInitialIndividualsWithDescendants}
+%\section{Results} \label{sec:results}
 
 
 
-\subsection{Effectiveness of Mutation and Crossover}
-\label{sec:effectivenessMutationCrossover}
+%\subsection{Number of Initial Individuals With Final Generation Descendants}
+%\label{sec:numberInitialIndividualsWithDescendants}
 
 
 
-\subsection{Winning Root Ancestry Line Fitness}
-\label{sec:WinningRootLineFitness}
-
-
-\section{Conclusions} \label{sec:conclusion}
+%\subsection{Effectiveness of Mutation and Crossover}
+%\label{sec:effectivenessMutationCrossover}
 
 
 
-\section*{Acknowledgements}
+%\subsection{Winning Root Ancestry Line Fitness}
+%\label{sec:WinningRootLineFitness}
 
-David's work was supported by the Morris Academic Partners program at the University of Minnesota, Morris. Many thanks to Nicholas Cornhill and Emma Ireland for their early help in connecting evolutionary computation systems to Neo4j.
+
+%\section{Conclusions} \label{sec:conclusion}
+
+
+
+%\section*{Acknowledgements}
+
+%David's work was supported by the Morris Academic Partners program at the University of Minnesota, Morris. Many thanks to Nicholas Cornhill and Emma Ireland for their early help in connecting evolutionary computation systems to Neo4j.
 
 \pagebreak
 
