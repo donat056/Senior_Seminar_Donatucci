@@ -51,19 +51,19 @@ At the beginning of an EMOA, a method runs that randomly initializes a populatio
 \subsection{Gossip-based Protocol}
 \label{sec:GBP}
 
-\emph{Gossip-based}, GB, protocol acts exactly like the name gossip implies. A node which contains new information selects multiple nodes called \emph{peers} to spread the new information to. The selection of peers is often probabilistic. This act is called a round. In the next round, each of the nodes that received the information selects more nodes to spread the information to. As more round are completed all of the nodes start to have the same information. 
+\emph{Gossip-based}, GB, protocol acts exactly like the name gossip implies. A node which contains new information selects multiple nodes called \emph{peers} to spread new information to. The selection of peers is often probabilistic and therefore the number of peers can be as little as zero to a large set. The act of spreading the information is called a round. In the next round, each of the peers that received the information selects more peers to spread the information to. As more rounds are completed all of the nodes start to have the same new information.~\cite{Yanggratoke}
 
 
-\section{Graph Databases}
-\label{sec:Graph Databases}
+%\section{Graph Databases}
+%\label{sec:Graph Databases}
 
 
 
-\begin{verbatim}
-    START parent=node(43)
-    MATCH (parent)-[:PARENTOF]->(child)
-    RETURN parent, child;
-\end{verbatim}
+%\begin{verbatim}
+  %  START parent=node(43)
+ %   MATCH (parent)-[:PARENTOF]->(child)
+ %   RETURN parent, child;
+%\end{verbatim}
 
 
 %\section{Experimental Setup} 
