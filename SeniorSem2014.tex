@@ -1,6 +1,6 @@
 \documentclass{sig-alternate}
 
-\title{Modern Techniques of Energy Optimization for Green Cloud Computing}
+\title{Modern Techniques for Energy Optimization for Green Cloud Computing}
 
 \author{
 \alignauthor
@@ -37,28 +37,34 @@ In order for the reader to fully understand the material presented in this paper
 \subsection{Cloud Computing}
 \label{sec:Cloud Computing}
 
-In the last several years, cloud computing has become a predominate service. Cloud computing pertains to both the applications services provided via the Internet as well as the hardware and systems software in data centers. Inside these data centers are an exuberant amount of servers (the hardware) managed by middleware (software that communicates between servers). These components make up what is called the \emph{cloud}~\cite{Armbrust}. Usually, large IT firms called \emph{providers} such as Google or Amazon provide the hardware and system software for these large data centers. However, these large IT firms have extra servers and rent them to smaller companies providing a relatively cheap system to compute in the cloud. 
+In the last several years, cloud computing has become a prevalent service. Cloud computing pertains to both the applications services provided via the Internet and the hardware and systems software in data centers. Inside these data centers are an exuberant amount of servers (the hardware) managed by middleware (software that communicates between servers). These components make up what is called the \emph{cloud}~\cite{Armbrust}. Usually, large IT firms called \emph{providers}, such as Google or Amazon, provide the hardware and system software for these large data centers. However, these large IT firms have extra servers and rent them to smaller companies providing a relatively cheap system to compute in the cloud. 
 
 The workload on the cloud is amount of requests for service at a given time. In order to provide a high quality of service, the providers sign a service level agreement, \emph{SLA}, that requires them to fulfill these requests in a set amount of time. 
 
 \subsection{Evolutionary Multiobjective Optimization Algorithms (EMOA)}
 \label{sec:EMOA}
 
-Evolutionary Computation~\cite{poli08:fieldguide} is based around the interactions of individuals. Individuals are similar to organisms in biological evolution. As in biological evolution, a group of individuals makes up a population. In the process of biological evolution and natural selection, organisms within a population compete in order to survive and reproduce. Those individuals best adapted to their environment have the best chance of fulfilling these objectives.  In an \emph{evolutionary multiobjective optimization algorithm}, EMOA, individuals also compete, but here those individuals that provide closer solutions to all optimizations have the best odds. The goal of EMOAs is to produce a set of individuals that provide quality solutions in a reasonable amount of time. 
+Evolutionary Computation~\cite{poli08:fieldguide} is based around the interactions of \emph{individuals}. Individuals are similar to organisms in biological evolution but contain a solution to a given problem. As in biological evolution, a group of individuals makes up a population. In the process of biological evolution and natural selection, organisms within a population compete in order to survive and reproduce. Those individuals best adapted to their environment have the best chance of fulfilling these objectives.  In an \emph{evolutionary multiobjective optimization algorithm}, EMOA, there individuals also compete, but here those individuals that provide closer solutions to all user-defined optimizations have the best odds. The goal of EMOAs is to produce a set of individuals that provide quality solutions in a reasonable amount of time. 
 
-At the beginning of an EMOA, a method runs that randomly initializes a population. The randomly generated individuals within this population then compete in order to pass their code on to the next generation, similar to biological evolution. For the purposes of this paper, I will talk about binary tournament selection, although there are many different methods to select individuals to breed. Binary tournament selection is where two individuals are randomly chosen from the population, and the individual that is more optimized is selected as a parent. This is performed twice to obtain two parents.  These selected parents can propagate their genetic material to the next generation by two methods. The first and most common method is crossover, comparable to sexual reproduction, where two parents are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. Crossover and mutation are utilized across multiple generations, until an optimized solution is found or until some sort of resource limit is reached.
+At the beginning of an EMOA, an algorithm runs that randomly initializes a population. These individuals then compete in order to be selected for alteration towards a better solution. For the purposes of this paper, I will talk about binary tournament selection, although there are many different methods to select individuals to breed. Binary tournament selection is where two individuals are randomly chosen from the population, and the individual that is more optimized is selected as a parent. This is performed twice to obtain two parents.  These selected parents can propagate their genetic material to the next generation by two methods. The first and most common method is crossover, comparable to sexual reproduction, where two parents are selected from the current generation, and elements from each selected individual are combined to form a new individual in the next generation. The second method is mutation, in which an individual is selected and randomly altered, much like biological mutation. Crossover and mutation are utilized across multiple generations, until an optimized solution is found or until some sort of resource limit is reached.
 
 \subsection{Gossip-based Protocol}
 \label{sec:GBP}
 
-\emph{Gossip-based}, GB, protocol acts exactly like the name gossip implies. A node which contains new information selects multiple nodes called \emph{peers} to spread new information to. The selection of peers is often probabilistic and therefore the number of peers can be as little as zero to a large set. The act of spreading the information is called a round. In the next round, each of the peers that received the information selects more peers to spread the information to. As more rounds are completed all of the nodes start to have the same new information.~\cite{Yanggratoke}
+\emph{Gossip-based}, GB, protocol acts exactly as the name gossip implies. A node which contains new information selects multiple nodes called \emph{peers} to spread new information to. The selection of peers is often probabilistic and therefore the number of peers is random. The act of spreading the information is called a \emph{round}. In the next round, each of the peers that received the information selects more peers to spread the information to. As more rounds are completed, all of the nodes start to have the same new information.~\cite{Yanggratoke}
 
 
-%\section{Graph Databases}
-%\label{sec:Graph Databases}
+\section{Macro-based Algorithms}
+\label{sec:MacAL}
 
+\emph{Green Monster}
+%, GM,
+is an framework proposed by Phan et al that uses geographical location to maximize energy savings. The EMOA in Green Monster uses three optimization objectives: renewable energy consumption (RE), cooling energy consumption (CE), and user-to-service distance (USD). In order to get the best results, Green Monster looks to maximize RE, and minimize both CE and USD. By minimizing the USD, Green Monster attempts to minimize the response time to assure a high quality of service specified by the SLAs. Also, minimizing the CE implies that the energy consumed in the data center will be more heavily used for processing. 
 
+\subsection{Green Monster EMOA}
+\label{sec:GMEMOA}
 
+Green Monster represents individuals an a configuration of all services (Ssubi) in all data centers (Dsubi). Each data center has a service capacity (Csubi) or the maximum workload a data center can handle. To initialize a population of \emph{N} individuals, the EMOA assigns random services to random data centers so that any given data center does not exceed the service capacity. If the service does exceed the service capacity, it will be assigned to the data center with the least workload. Upon completion, the EMOA uses binary tournament selection to select individuals for alteration. In this instance of binary tournament, the individual is selected by~\emph{constrained-dominance}. An individual, \emph{i},  is constrained-dominant to an individual, \emph{j}, if \emph{i} has the least amount of service capacity violations or if \emph{i} and \emph{j} do not have any violations \emph{i} is constrained-dominate. When two parents are selected, crossover is performed and two offspring are produced. These offspring are mutated for every service based on a mutation rate, assigning a random data center to that service. Phan et al then perform a search for each service that checks to see if any data center could improve all optimizations and not violate the service capacity, than it switches the service to that data center. This is done repeatedly until the same amount of individuals in the parent generation are in the next generation. In order for the best individuals to permeate to the next generation, Phan et al combine both the parent and offspring generation and sort based on constrained-dominance taking only the first \emph{N} individuals. 
 %\begin{verbatim}
   %  START parent=node(43)
  %   MATCH (parent)-[:PARENTOF]->(child)
@@ -66,8 +72,8 @@ At the beginning of an EMOA, a method runs that randomly initializes a populatio
 %\end{verbatim}
 
 
-%\section{Experimental Setup} 
-%\label{sec:experiments}
+\section{Micro-based Algorithms} 
+\label{sec:MicAl}
 
 
 %\subsection{Genetic Programming Setup}
