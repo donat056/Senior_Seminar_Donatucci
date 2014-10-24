@@ -126,6 +126,7 @@ Han et al then placed all of the \emph{$\alpha_\emph{(s,n)}$} for every service 
 
 The first objective of GRMP-Q is to satisfy user demand by allocating enough resources so that the provider can satisfy the SLA. The second objective is to minimize power consumption. GRMP-Q does this by turning a server to stand-by if the total demand on the server is zero. If there is insufficient resources or the \emph{w$_{\text{(s,n)}}$} of a new service, S$_{\text{\emph{(i+1)}}}$, is greater than the workload capacity, the system will turn a stand-by server on. 
 
+In order to transfer one service to another service there are three gossip-based processes that occur. The first process is initialization which initializes the gossip protocol for the current configuration matrix at a random server.  The second process chooses a peer by randomly selecting another server. After a peer is selected, the relative demand is calculated by taking $\sum$ of w(s,n) / workload of the server. 
 
 \subsection{Speed-Scaling}
 \label{sec:Speed}
