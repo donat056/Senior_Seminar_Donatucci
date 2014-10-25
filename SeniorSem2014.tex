@@ -115,38 +115,38 @@ Several simulations of Green Monster have been conducted based on statistics of 
 \section{Micro-based Algorithms} 
 \label{sec:MicAl}
 
-There are many different micro-based algorithms for a green cloud but I will choose to focus on two potential algorithms: GRMP-Q, a gossip-based allocation algorithm and the speed-scaling algorithm by Han et al. 
+There are many different micro-based algorithms for a green cloud but I will choose to focus on two potential algorithms: GRMP-Q, a gossip-based allocation algorithm and the speed-scaling algorithm by Yanggratoke et al. 
 \subsection{Gossip-based Resource Allocation}
 \label{sec:GBRA}
 
-The first section is divided into two sections to describe the basics of GRMP-Q,~\ref{subsec:GRMPBasics}, and the second section~\ref{sub:GRMPSim} describes GRMP-Q in simulations. 
-\subsubsection{GRMP-Q Basics}
-\label{subsec:GRMPBasics}
+%The first section is divided into two sections to describe the basics of GRMP-Q,~\ref{subsec:GRMPBasics}, and the second section~\ref{sub:GRMPSim} describes GRMP-Q in simulations. 
+%\subsubsection{GRMP-Q Basics}
+%\label{subsec:GRMPBasics}
 
-\emph{GRMP-Q} is middleware for a data center that utilizes gossip protocol to minimize the amount of servers running services. Usually, providers rent specific servers by the hour to smaller companies. This, however, is not efficient. A single server working at  \emph{workload capacity}, or the maximum amount of services that a single server can handle, will be much more efficient than three server working at one third of workload capacity. This is due to the minimum power level that a server must consume to be on. GRMP-Q attempts to migrate all services to the least amount of servers possible.  For simplicity, Han et al assume that all servers, \emph{N}, in a data center have identical specifications (power consumption, CPU, and memory capacities). For any given service, (S$_{\text{\emph{i}}}$), the demand, \emph{$\omega_{\text{s}}$}, can be spread across multiple servers. The equation for demand \emph{w$_{\text{(s,n)}}$} on a single server \emph{n}, is given by \eqref{eq:1} where \emph{$\alpha$} is the fraction of the demand on that server:
+\emph{GRMP-Q} is middleware for a data center that utilizes gossip protocol to minimize the amount of servers running services. Usually, providers rent specific servers by the hour to smaller companies. This, however, is not efficient. A single server working at  \emph{workload capacity}, or the maximum amount of services that a single server can handle, will be much more efficient than three server working at one third of workload capacity. This is due to the minimum power level that a server must consume to be on. GRMP-Q attempts to migrate all services to the least amount of servers possible.  For simplicity, Yanggratoke et al assume that all servers, \emph{N}, in a data center have identical specifications (power consumption, CPU, and memory capacities). For any given service, (S$_{\text{\emph{i}}}$), the demand, \emph{$\omega_{\text{s}}$}, can be spread across multiple servers. The equation for demand \emph{w$_{\text{(s,n)}}$} on a single server \emph{n}, is given by \eqref{eq:1} where \emph{$\alpha$} is the fraction of the demand on that server:
 \begin{equation}
 \omega\emph{(s,n)} = \alpha_\emph{(s,n)} \times \omega_\emph{s} \text{\emph{~s.t.~}} \alpha_\emph{(s,n)} \geq 0,~ \sum_{n=1}^{N} \alpha_\emph{(s,n)} = 1 \label{eq:1}
 \end{equation}
 
-Han et al then placed all of the \emph{$\alpha_\emph{(s,n)}$} for every service into a matrix called \emph{the configuration matrix}. The configuration matrix, A, shows how the data center's resources are allocated to services. At certain times, load changes, addition of services, or change in the number of servers will cause the configuration matrix to be updated. 
+Yanggratoke et al then placed all of the \emph{$\alpha_\emph{(s,n)}$} for every service into a matrix called \emph{the configuration matrix}. The configuration matrix, A, shows how the data center's resources are allocated to services. At certain times, load changes, addition of services, or change in the number of servers will cause the configuration matrix to be updated. 
 
 The first objective of GRMP-Q is to satisfy user demand by allocating enough resources so that the provider can satisfy the SLA. The second objective is to minimize power consumption. GRMP-Q does this by turning a server to stand-by if the total demand on the server is zero. If there is insufficient resources or the \emph{$\omega_{\text{(s,n)}}$} of a new service, S$_{\text{\emph{(i+1)}}}$, is greater than the workload capacity, $\Omega$, the system will turn a stand-by server on. 
 
-In order to transfer one service to another service there are three gossip-based processes that occur. The first process is initialization which initializes the gossip protocol for the current configuration matrix at a random server \emph{n}.  The second process chooses a peer by randomly selecting different server, \emph{j}. After a peer is selected, the relative demand, \emph{v}, on server \emph{n} is calculated by taking the sum of \emph{$\omega$} of all services on \emph{n} divided by $\Omega$ workload of \emph{n}~\eqref{eq:2}.
+In order to transfer one service to another service there are three gossip-based processes that occur. The first process is initialization which initializes the gossip protocol for the current configuration matrix at a random server \emph{n}.  The second process chooses a peer from the configuration matrix where by randomly selecting different server whose $\alpha > 0$, \emph{j}. After a peer is selected, the relative demand, \emph{v}, on server \emph{n} is calculated by taking the sum of \emph{$\omega$} of all services on \emph{n} divided by $\Omega$ workload of \emph{n}~\eqref{eq:2}.
 \begin{equation}
 v_n = \sum_{i=1}^N \omega_{(S_i,n)}/\Omega\label{eq:2}
 \end{equation}
 
-If $v_n + v_j \geq 2$, the algorithm assumes the cloud is in overload and will move services to the server that has a smaller relative demand. However, if $v_n + v_j < 2$, then algorithm assumes the cloud is in \emph{underload} (there are unused resources on some active servers). When the cloud is in underload, GRMP-Q then packs services in such a manner that the server with the highest relative demand of $v_n$ and $v_j$ migrates services so that demand is equal to $\Omega$. This ensures that one server is fully packed and the other is less than $\Omega$. 
-%to add memory, configuration matrix?
+If $v_n + v_j \geq 2$, the algorithm assumes the cloud is in overload and will move services to the server that has a smaller relative demand. However, if $v_n + v_j < 2$, then algorithm assumes the cloud is in \emph{underload} (there are unused resources on some active servers). When the cloud is in underload, GRMP-Q then packs services in such a manner that the server with the highest relative demand of $v_n$ and $v_j$ migrates services so that demand is equal to $\Omega$. This ensures that one server is fully packed and the other is less than $\Omega$. Since this algorithm is gossip-based,  comparisons of two servers will occur continuously.~\citep{Yanggratoke}  
+%to add memory, maybe simulation?
 
-\subsubsection{GRMP-Q Simulations}
-\label{sub:GRMPSim}
+%\subsubsection{GRMP-Q Simulations}
+%\label{sub:GRMPSim}
 
 
 \subsection{Speed-Scaling}
 \label{sec:Speed}
-
+This version of speed scaling by Han et al, 
 \section{Results} 
 \label{sec:results}
 \subsection{Green Monster}
