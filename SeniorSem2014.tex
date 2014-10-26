@@ -28,7 +28,7 @@ Place abstract here
 
 \section{Introduction} \label{sec:intro}
 
-Cloud Computing has been growing exponentially in the last several years in order to accommodate a growing demand for internet services. Due to this growth, larger data centers are required to meet demand. With larger data centers, an increasing amount power is necessary for these data centers to fulfill demands. In 2010, 1.5\% of all energy consumed worldwide was from data centers. In 2000, only about one fourth of the energy was used to power data centers~\cite{Yanggratoke}. In light of these staggering numbers, much research has been devoted to reducing power consumption. So far, two different approaches have been implemented to combat power consumption: macro-based and micro-based methods. Macro-based methods focus on exploiting data centers in diverse geographical locations that have higher levels of renewable energy or cooler climates. Micro-based methods focus on efficient resource allocation of data center components~\cite{Hassan}. A description of cloud computing, evolutionary algorithms, and gossip-based protocol are provided in Section~\ref{Background}. Section~\ref{sec:MacAl} discusses a macro-based algorithm and Section~\ref{sec:MicAl} provides details on mirco-based algorithms. The results of these algorithms are presented in Section~\ref{sec:results}, and comparisons between these algorithms are presented in Section~\ref{sec:conclusion}.
+Cloud Computing has been growing exponentially in the last several years in order to accommodate a growing demand for internet services. Due to this growth, larger data centers are required to meet demand. With larger data centers, an increasing amount power is necessary for these data centers to fulfill demands. In 2010, 1.5\% of all energy consumed worldwide was from data centers. In 2000, only about one fourth of the energy was used to power data centers~\cite{Yanggratoke}. In light of these staggering numbers, much research has been devoted to reducing power consumption. So far, two different approaches have been implemented to combat power consumption: macro-based and micro-based methods. Macro-based methods focus on exploiting data centers in diverse geographical locations that have higher levels of renewable energy or cooler climates. Micro-based methods focus on efficient resource allocation of data center components~\cite{Hassan}. A description of cloud computing, evolutionary algorithms, gossip-based protocol and the Hungarian method of assignment are provided in Section~\ref{Background}. Section~\ref{sec:MacAl} discusses a macro-based algorithm and Section~\ref{sec:MicAl} provides details on mirco-based algorithms. The results of these algorithms are presented in Section~\ref{sec:results}, and comparisons between these algorithms are presented in Section~\ref{sec:conclusion}.
 
 \section{Background} 
 \label{Background}
@@ -233,13 +233,13 @@ Han et al simulate their algorithm in comparison with a non-power aware policy a
 \section{Conclusions} 
 \label{sec:conclusion}
 
+From the results, we can tell that both micro-based and macro-based algorithms produce a greener data center even though they use completely distinct methods to do so.  Green Monster focuses on migrating services to different data centers so that more renewable energy is conserved. GRMP-Q targets the packing of services into in minimum amount of servers possible. Han et al centers around adjusting CPU frequency and voltage while optimizing the placement of jobs on servers. Since cloud computing is still relatively new and growing, there is considerable potential to reduce power even further. Combinations of both micro and macro will undoubtedly be used together to reduce power consumption of data centers.
+
+\section*{Acknowledgements}
+
+Many thanks to my advisor, Elena Machkasova, and somebody else for being my second reader. 
 
 
-%\section*{Acknowledgements}
-
-%David's work was supported by the Morris Academic Partners program at the University of Minnesota, Morris. Many thanks to Nicholas Cornhill and Emma Ireland for their early help in connecting evolutionary computation systems to Neo4j.
-
-\pagebreak
 
 \bibliographystyle{acm}
 \bibliography{annotated_bibliography}
