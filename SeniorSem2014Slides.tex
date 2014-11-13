@@ -2,7 +2,7 @@
 
 \mode<presentation>
 {
-  \usetheme{CambridgeUS}
+  \usetheme[hideothersubsections]{MorrisStyle}
   \setbeamercovered{transparent}
 }
 
@@ -10,8 +10,6 @@
 \usepackage[latin1]{inputenc}
 \usepackage{times}
 \usepackage[T1]{fontenc} 
-% Or whatever. Note that the encoding and the font should match. If T1
-% does not look nice, try deleting the line with the fontenc.
 \usepackage{amsmath}
 
 \newcommand{\linespace}{\vskip 0.25cm}
@@ -27,7 +25,7 @@
 
 % The text in square brackets is the short version of your title and will be used in the
 % header/footer depending on your theme.
-\title[Techniques for Energy Optimization]{Modern Techniques for Energy Optimization for a Green Cloud}
+\title[Energy Optimization Techniques]{Modern Energy Optimization Techniques for a Green Cloud}
 
 % Sub-titles are optional - uncomment and edit the next line if you want one.
 % \subtitle{Why does sub-tree crossover work?} 
@@ -112,9 +110,87 @@
 
 \end{frame}
 
-  
+\subsection{Macro vs Micro Algorithms}
+
 \begin{frame}
-\frametitle{Evolutionary Multi-Objective Optimization Algorithms (EMOA)}
+  \frametitle{Macro vs Micro}
+ 
+
+\end{frame}
+
+\section[Green Monster]{Green Monster}
+\begin{frame}
+  \frametitle{Green Monster}
+\begin{columns}
+\begin{column}{0.65\textwidth}
+  \begin{itemize}
+ 		\item Evolutionary Multi-Objective Optimization Algorithm (EMOA)
+ 		\begin{itemize}
+ 			\item Based upon biological principles.
+ 			\item Individuals form a population.
+ 		\end{itemize}
+	\item Multiple Optimizations
+ 		\begin{itemize}
+			\item Renewable Energy (RE)
+			\item Cooling Energy (CE)
+			\item User-to-Service Distance (USD)
+		\end{itemize}
+	\item Three Steps in EMOA: 
+		\begin{itemize}
+			\item Initialization
+			\item Evolution
+			\item Termination
+		\end{itemize}
+  \end{itemize}
+\end{column}
+\begin{column}{0.35\textwidth}
+\includegraphics[width=.95\textwidth]{Individual.png} \\
+\tiny{Example of an Individual. $S_i$ indicates a service, $D_j$ indicates a data center.}
+\end{column}
+\end{columns}
+
+
+\end{frame}
+ 	
+\subsection[Intialization]{EMOA Intialization}
+
+\begin{frame}
+\frametitle{EMOA Intialization}
+  \begin{itemize}
+	\item Individuals length is equivalent to number of services.
+	\item Each service is assigned to a random data center. 
+	\item Capacity aware randomization.
+	\item Creates 100 individuals.
+  \end{itemize}
+\end{frame}
+
+\subsection[Evolution]{EMOA Evolution}
+\begin{frame}
+\frametitle{EMOA Evolution}
+\begin{columns}
+\begin{column}{0.65\textwidth}
+  \begin{itemize}
+	\item Transformations
+		\begin{itemize}
+		\item Crossover (90\%)
+		\item Mutation (10\%)
+		\item Local Search (10\%)
+		\item Elitism (N+N)
+		\end{itemize}
+	\item Transformations occur over 100 Generations.
+  \end{itemize}
+\end{column}
+\begin{column}{0.35\textwidth}
+To add: pictures of transformations
+%\includegraphics[width=.95\textwidth]{Individual.png} \\
+%\tiny{Example of an Individual. $S_i$ indicates a service, $D_j$ indicates a data center.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection[Termination]{EMOA Termination}
+\begin{frame}
+\frametitle{Evolutionary Multi-Objective Optimization Algorithm (EMOA)}
 \begin{columns}
 \begin{column}{0.65\textwidth}
   \begin{itemize}
@@ -139,6 +215,8 @@
 \end{columns}
 \end{frame}
 
+\subsection[Simulations]{Green Monster Simulations}
+
 \begin{frame}
 \frametitle{Run Configurations}
 \begin{description}[align=left, leftmargin=*]
@@ -154,164 +232,18 @@
 \end{description}
 \end{frame}
 
-\subsection{Macro vs Micro}
+\section[GRMP-Q]{Gossip-based Resource Allocation}
 
 \begin{frame}
-	\frametitle{Symbolic Regression and Fitness}
-	
-	We are focusing on symbolic regression problems.
-	\begin{itemize}
-		\item Collection of test points as input.
-		\item Evolve mathematical formula to fit data.
-	\end{itemize}
-	
-	\linespace
-	
-	Fitness determines individual's distance from target function.
-	\begin{itemize}
-		\item Lower the fitness, the better the individual.
-		\item A fitness of zero would exactly match test data.
-	\end{itemize}
-	
-	\linespace 
-	
-	The goal of GP is to evolve an individual with as low a fitness as possible.
+	\frametitle{Gossip}
 	
 \end{frame}
-
-\section[Graph DB]{Graph Database}
-\subsection{Neo4j}
-
-\begin{frame}
-	\frametitle{Neo4j}
-	
-	
-	
-\begin{columns} 
-\begin{column}{0.60 \textwidth}
-Neo4j is a graph database.
-		\begin{itemize}
-		\item relatively new tool
-			\begin{itemize}
-			\item initial release 2007
-			\item popularized in 2010
-			\end{itemize}
-		\item information is stored using a graph
-		\item nodes and relationships
-		\item efficient recursive queries compared with traditional databases
-		\end{itemize}
-		\end{column}
-		\begin{column}{0.40\textwidth}
-   %\includegraphics[width=0.95\textwidth]{graphdb-neo4j.png}
-       \\
-    \only{\tiny{Neo4j \ \url{http://goo.gl/nzRWSV}}}
-  \end{column}
-  \end{columns}
-
-\end{frame}
-
-\subsection{Cypher}
-
-\begin{frame}
-
-\end{frame}
-
-\section[Setup]{Experimental Setup}
-
-\subsection{Configurations}
-
 
 \section[Results]{Results}
-
-\subsection[Questions Asked]{Questions Asked}
-
-\begin{frame}
-\frametitle{Questions Asked}
-\begin{enumerate}
-\item \emph{What does the fitness of the ``winning'' individual's ancestry line look like over time?}
-\item \emph{How often does mutation improve fitness? Also, how often does crossover improve fitness, where the root parent is more fit than the non-root parent, and vice versa?}
-\item \emph{Does a group of individuals have a common root parent ancestor and what is the latest generation where such an ancestor occurs?}
-\item \emph{How many individuals in the initial generation have any root parent descendants in the final generation?}
-\end{enumerate}
-\end{frame}
-
-\subsection[Fitness Graph]{Fitness Over Time}
-
-\begin{frame}
-\frametitle{Fitness Over Time}
-\emph{What does the fitness of the ``winning'' individual's ancestry line look like over time?}
-\begin{center}
-%\includegraphics[width=0.85\textwidth]{Combined_fitness_over_time_no_dashed}
-\end{center}
-\end{frame}
-
-\subsection[Improved Transformations]{Improved Transformations}
-
-\begin{frame}
-\frametitle{Percentage of Improved Transformations}
-\emph{How often does mutation and crossover improve fitness?}
-\begin{center}
-{\tiny Results for Three 1,000 Individual Runs and One 10,000 Individual Run}
-%\includegraphics[width=0.95\textwidth]{All_percentages_over_time}
-\end{center}
-\end{frame}
-
-\subsection[Common Ancestor]{Common Ancestor}
-
-\begin{frame}
-\frametitle{Common Ancestor}
-\emph{Does a group of individuals have a common root parent ancestor and how many initial generation individuals have descendants in the final generation?}
-\begin{center}
-%\includegraphics[height=0.70\textheight]{subset_confluence_trimmed}
-\end{center}
-
-\end{frame}
+\subsection{Green Monster}
+\subsection{GRMP-Q}
 
 \section[Conclusions]{Conclusions}
-
-\begin{frame}
-\frametitle{Conclusions}
-
-\begin{itemize}
-\item We can gather internal data efficiently.
-\item Provides more in depth information than statistical summaries. 
-\item Support for hypotheses.
-\end{itemize}
-\linespace
-\linespace
-\linespace
-\linespace
-
-Future Work
-\begin{itemize}
-\item Trying different setup configurations.
-\item Enforcing the root parent to have better fitness in XO.
-\item Dynamically change parameters.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Thanks!}
-	
-	Thank you for your time and attention!
-		
-	\linespace
-	\linespace
-	
-	Contacts:  
-	\begin{itemize}
-		\item \texttt{donat056@morris.umn.edu}
-		\item \texttt{dramd002@morris.umn.edu}
-		\item \texttt{mcphee@morris.umn.edu}
-	\end{itemize}
-	
-	\linespace
-	\linespace
-	
-	\begin{center}
-	{\huge Questions?}
-	\end{center}
-\end{frame}
 
 \section*{References}
 
@@ -319,7 +251,7 @@ Future Work
 \frametitle{References}
 \nocite{*}
 \bibliographystyle{acm}
-{\tiny \bibliography{MICS_2014}}
+{\tiny \bibliography{annotated_bibliography}}
 \end{frame} 
 
 \end{document}
