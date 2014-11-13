@@ -1,0 +1,325 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{CambridgeUS}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc} 
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{amsmath}
+
+\newcommand{\linespace}{\vskip 0.25cm}
+
+\definecolor{MyForestGreen}{rgb}{0,0.7,0} 
+\newcommand{\tableemph}[1]{{#1}}
+\newcommand{\tablewin}[1]{\tableemph{#1}}
+\newcommand{\tablemid}[1]{\tableemph{#1}}
+\newcommand{\tablelose}[1]{\tableemph{#1}}
+
+\definecolor{MyLightGray}{rgb}{0.6,0.6,0.6}
+\newcommand{\tabletie}[1]{\color{MyLightGray} {#1}}
+
+% The text in square brackets is the short version of your title and will be used in the
+% header/footer depending on your theme.
+\title[Techniques for Energy Optimization]{Modern Techniques for Energy Optimization for a Green Cloud}
+
+% Sub-titles are optional - uncomment and edit the next line if you want one.
+% \subtitle{Why does sub-tree crossover work?} 
+
+% The text in square brackets is the short version of your name(s) and will be used in the
+% header/footer depending on your theme.
+\author[Donatucci]{David Donatucci}
+
+% The text in square brackets is the short version of your institution and will be used in the
+% header/footer depending on your theme.
+\institute[UMM]
+{
+  Division of Science and Mathematics \\
+  University of Minnesota, Morris \\
+  Morris, Minnesota, USA
+}
+
+% The text in square brackets is the short version of the date if you need that.
+\date[December '14, Senior Seminar] % (optional)
+{December 6th 2014 \\ Senior Seminar Conference, Morris, MN}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection, hideothersubsections]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% For a 20-25 minute senior seminar talk you probably want something like:
+% - Two or three major sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should probably be between
+%   15 and 30 frames, all told.
+
+\section*{Overview}
+
+\subsection*{The Big Picture}
+
+\begin{frame}
+  \frametitle{The Big Picture}
+  
+  \begin{itemize}
+	\item Data centers account for a significant fraction of all electricity used in the world.
+	\item Large demand for cloud computing means providers must find ways to reduce energy.
+	\item Databases allow examination of the internal interactions of a run.
+	\item Different approaches to algorithms 
+	\item Implementing these techniques may be used to improve data center efficiency.  
+  \end{itemize}
+
+  
+\end{frame}
+
+\subsection*{Outline}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section[Cloud Computing]{Cloud Computing Basics}
+
+\subsection{Cloud Computing}
+
+\begin{frame}
+  \frametitle{Cloud Computing}
+ 
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cloud Computing and Energy}
+ 
+
+\end{frame}
+
+  
+\begin{frame}
+\frametitle{Evolutionary Multi-Objective Optimization Algorithms (EMOA)}
+\begin{columns}
+\begin{column}{0.65\textwidth}
+  \begin{itemize}
+  	\item EMOAs are based upon biological principles.
+	\item Individuals form a population.
+	\item Multiple Optimizations and Fitness
+	\item Transformations
+		\begin{itemize}
+		\item Crossover
+		\item Mutation
+		\item Local Search
+		\item Elitism
+		\end{itemize}
+	\item Transformations occur over a specified number of generations.
+	\item Individuals that have the lowest fitness are the most optimized to all optimization. 
+  \end{itemize}
+\end{column}
+\begin{column}{0.35\textwidth}
+\includegraphics[width=.95\textwidth]{Individual.png} \\
+\tiny{Example of an Individual. $S_i$ indicates a service, $D_j$ indicates a data center.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Run Configurations}
+\begin{description}[align=left, leftmargin=*]
+{\small
+\item[Population Initialization] Randomly assigned services to data centers
+\item[Optimizations] Maximization of Renewable Energy (RE), Minimization of Cooling Energy (CE) User-to-Service Distance USD
+\item[Transform Percentages] crossover (90\%) mutation (10\%)
+\item[Local Search Rate] 10\%
+\item[Generations] 100
+\item[Population Size Per Gen] 1,000 (3 runs) and 10,000 (1 run)
+\item[Elitism] N+N\%
+}
+\end{description}
+\end{frame}
+
+\subsection{Macro vs Micro}
+
+\begin{frame}
+	\frametitle{Symbolic Regression and Fitness}
+	
+	We are focusing on symbolic regression problems.
+	\begin{itemize}
+		\item Collection of test points as input.
+		\item Evolve mathematical formula to fit data.
+	\end{itemize}
+	
+	\linespace
+	
+	Fitness determines individual's distance from target function.
+	\begin{itemize}
+		\item Lower the fitness, the better the individual.
+		\item A fitness of zero would exactly match test data.
+	\end{itemize}
+	
+	\linespace 
+	
+	The goal of GP is to evolve an individual with as low a fitness as possible.
+	
+\end{frame}
+
+\section[Graph DB]{Graph Database}
+\subsection{Neo4j}
+
+\begin{frame}
+	\frametitle{Neo4j}
+	
+	
+	
+\begin{columns} 
+\begin{column}{0.60 \textwidth}
+Neo4j is a graph database.
+		\begin{itemize}
+		\item relatively new tool
+			\begin{itemize}
+			\item initial release 2007
+			\item popularized in 2010
+			\end{itemize}
+		\item information is stored using a graph
+		\item nodes and relationships
+		\item efficient recursive queries compared with traditional databases
+		\end{itemize}
+		\end{column}
+		\begin{column}{0.40\textwidth}
+   %\includegraphics[width=0.95\textwidth]{graphdb-neo4j.png}
+       \\
+    \only{\tiny{Neo4j \ \url{http://goo.gl/nzRWSV}}}
+  \end{column}
+  \end{columns}
+
+\end{frame}
+
+\subsection{Cypher}
+
+\begin{frame}
+
+\end{frame}
+
+\section[Setup]{Experimental Setup}
+
+\subsection{Configurations}
+
+
+\section[Results]{Results}
+
+\subsection[Questions Asked]{Questions Asked}
+
+\begin{frame}
+\frametitle{Questions Asked}
+\begin{enumerate}
+\item \emph{What does the fitness of the ``winning'' individual's ancestry line look like over time?}
+\item \emph{How often does mutation improve fitness? Also, how often does crossover improve fitness, where the root parent is more fit than the non-root parent, and vice versa?}
+\item \emph{Does a group of individuals have a common root parent ancestor and what is the latest generation where such an ancestor occurs?}
+\item \emph{How many individuals in the initial generation have any root parent descendants in the final generation?}
+\end{enumerate}
+\end{frame}
+
+\subsection[Fitness Graph]{Fitness Over Time}
+
+\begin{frame}
+\frametitle{Fitness Over Time}
+\emph{What does the fitness of the ``winning'' individual's ancestry line look like over time?}
+\begin{center}
+%\includegraphics[width=0.85\textwidth]{Combined_fitness_over_time_no_dashed}
+\end{center}
+\end{frame}
+
+\subsection[Improved Transformations]{Improved Transformations}
+
+\begin{frame}
+\frametitle{Percentage of Improved Transformations}
+\emph{How often does mutation and crossover improve fitness?}
+\begin{center}
+{\tiny Results for Three 1,000 Individual Runs and One 10,000 Individual Run}
+%\includegraphics[width=0.95\textwidth]{All_percentages_over_time}
+\end{center}
+\end{frame}
+
+\subsection[Common Ancestor]{Common Ancestor}
+
+\begin{frame}
+\frametitle{Common Ancestor}
+\emph{Does a group of individuals have a common root parent ancestor and how many initial generation individuals have descendants in the final generation?}
+\begin{center}
+%\includegraphics[height=0.70\textheight]{subset_confluence_trimmed}
+\end{center}
+
+\end{frame}
+
+\section[Conclusions]{Conclusions}
+
+\begin{frame}
+\frametitle{Conclusions}
+
+\begin{itemize}
+\item We can gather internal data efficiently.
+\item Provides more in depth information than statistical summaries. 
+\item Support for hypotheses.
+\end{itemize}
+\linespace
+\linespace
+\linespace
+\linespace
+
+Future Work
+\begin{itemize}
+\item Trying different setup configurations.
+\item Enforcing the root parent to have better fitness in XO.
+\item Dynamically change parameters.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Thanks!}
+	
+	Thank you for your time and attention!
+		
+	\linespace
+	\linespace
+	
+	Contacts:  
+	\begin{itemize}
+		\item \texttt{donat056@morris.umn.edu}
+		\item \texttt{dramd002@morris.umn.edu}
+		\item \texttt{mcphee@morris.umn.edu}
+	\end{itemize}
+	
+	\linespace
+	\linespace
+	
+	\begin{center}
+	{\huge Questions?}
+	\end{center}
+\end{frame}
+
+\section*{References}
+
+\begin{frame} 
+\frametitle{References}
+\nocite{*}
+\bibliographystyle{acm}
+{\tiny \bibliography{MICS_2014}}
+\end{frame} 
+
+\end{document}
