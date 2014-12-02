@@ -63,11 +63,6 @@ At the beginning of an EMOA, a population is randomly initialized. The initial p
 
 \emph{Gossip-based} protocol acts exactly as the name implies. A node which contains new information selects multiple nodes called \emph{peers} to spread new information to. The selection of peers is often probabilistic and therefore there can be a range of peers. The act of spreading the information is called a \emph{round}. In the next round, each of the peers that received the information selects more peers to spread the information to. As more rounds are completed, all of the nodes eventually obtain the same new information~\cite{Yanggratoke}.
 
-\subsection{Hungarian Method of Assignment}
-\label{sec:HMA}
-
-The following describes the general procedure of the Hungarian Method of Assignment. The \emph{Hungarian Method of Assignment} uses a $n \times n$ cost matrix with respect to energy (as seen in Figure~\ref{fig:HMA}) to find the least power consuming configuration of server to job placement. Rows and columns represent jobs and servers respectively~\cite{Han}. The matrix elements represent the amount of power placing a job onto a server. To find this configuration, we first subtract the smallest wattage in each row from all the entries of its row. Similarly, we subtract the smallest wattage (after rows have been subtracted) in each column from all entries in its column. After subtraction, the new cost matrix will have some number of zero entries. Since we only subtract the minimum entries, there will not be any negative entries. We draw lines through appropriate rows and columns so that all the zero entries of the cost matrix are covered and the minimum number of such lines is used.  If the number of lines is equal to \emph{n} then there is an optimal solution. However, if the number of lines is not equal to \emph{n}, then we determine the smallest entry not covered by any line. We subtract this entry from each uncovered row, and then add it to each covered column repeating until there are \emph{n} lines. By locating a minimum combination of matrix elements, (usually a combination of zero elements) we then can easily determine the optimal solution.  
-
 \begin{figure}[tb]
  \centering
  \includegraphics[height=0.25 \textwidth]{s}
@@ -76,6 +71,11 @@ The following describes the general procedure of the Hungarian Method of Assignm
  \caption{Computing the Hungarian method cost matrix for servers A,B,C and jobs 1,2,3. Matrix elements represent energy consumption in Watts. The optimal solution (job to server) is 1-B, 2-C, 3-A}
  \label{fig:HMA}
 \end{figure}
+\pagebreak
+\subsection{Hungarian Method of Assignment}
+\label{sec:HMA}
+
+The following describes the general procedure of the Hungarian Method of Assignment. The \emph{Hungarian Method of Assignment} uses a $n \times n$ cost matrix with respect to energy (as seen in Figure~\ref{fig:HMA}) to find the least power consuming configuration of server to job placement. Rows and columns represent jobs and servers respectively~\cite{Han}. The matrix elements represent the amount of power placing a job onto a server. To find this configuration, we first subtract the smallest wattage in each row from all the entries of its row. Similarly, we subtract the smallest wattage (after rows have been subtracted) in each column from all entries in its column. After subtraction, the new cost matrix will have some number of zero entries. Since we only subtract the minimum entries, there will not be any negative entries. We draw lines through appropriate rows and columns so that all the zero entries of the cost matrix are covered and the minimum number of such lines is used.  If the number of lines is equal to \emph{n} then there is an optimal solution. However, if the number of lines is not equal to \emph{n}, then we determine the smallest entry not covered by any line. We subtract this entry from each uncovered row, and then add it to each covered column repeating until there are \emph{n} lines. By locating a minimum job to server pairing of matrix elements, we can easily determine the optimal solution.  
 
 \section{Macro-based Algorithms}
 \label{sec:MacAl}
