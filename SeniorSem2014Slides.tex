@@ -114,7 +114,8 @@
  				\begin{itemize}
  					\item Shared calendar
  				\end{itemize}
- 			\item Hardware and software systems 
+ 			\item Hardware and software systems
+ 			\linebreak 
  			\item Data centers 
  				\begin{itemize}
  					\item Remote servers
@@ -140,40 +141,86 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cloud Computing Continued}
- 
+  \frametitle{Cloud Computing Terminology}
+	\emph{Requests}:	A user tries to access a particular service. 
+	\linebreak
+	\linebreak
+	\emph{Workload}: Number of requests for all services at a given time.
+	\linebreak
+	\linebreak
+	\emph{Workload capacity}: Total number of requests a data center can handle at any given time.
+	\linebreak
+	\linebreak
+	\emph{Service capacity}, $\Omega$: Total number of services a single server can handle at a given time.
+	\linebreak
+	\linebreak
+	A cloud is in \emph{overload} if number of requests is greater than the service capacity
+	\linebreak
+	\linebreak
+	A cloud is in \emph{underload} if number of requests is less than the service capacity.
+	
 
 \end{frame}
 
 \begin{frame}
   \frametitle{Cloud Computing and Energy}
- 
+ Cloud Computing has been growing rapidly.  
+ \linebreak
+ \linebreak
+ $\implies$ additional and larger data centers.
+ \linebreak
+ \linebreak
+ $\implies$ more power consumed.
+ \begin{description}
+ 	\item[2000] Data centers used ~70 Terawatts hours worldwide (.5\%)
+ 	\item[2010] Data centers used ~280 Terawatts hours worldwide (1.5\%)
+ \end{description}  
 
 \end{frame}
 
-\subsection{Macro vs Micro Algorithms}
+\subsection[Macro vs Micro]{Macro vs Micro Algorithms}
 
 \begin{frame}
-  \frametitle{Macro vs Micro}
+  \frametitle{Macro vs Micro Algorithms}
  	Two Types of Energy Optimization Techniques
  		\begin{enumerate}
- 			\item Macro Algorithms
+ 			\item Macro Algorithms:
  				\begin{itemize}
  					\item Geographic location
  					\item Climate
+ 					\linebreak
  				\end{itemize}
  			\item Micro Algorithms:
  				\begin{itemize}
- 					\item 
- 					\item Climate
+ 					\item Resource Allocation
  				\end{itemize}
  		\end{enumerate}
 
 \end{frame}
 
-\section[Green Monster]{Green Monster}
+\section[Green Monster]{Green Monster (Macro)}
+
 \begin{frame}
-  \frametitle{Green Monster}
+	\frametitle{Green Monster}
+\begin{columns}
+\begin{column}{0.55\textwidth}
+	\begin{itemize}
+	\item Framework for multiple data centers.
+	\linebreak
+	\item Attempts to take advantage of diverse climates and renewable resources.
+	\linebreak
+	\item EMOA
+	\end{itemize}
+
+\end{column}
+	\begin{column}{0.45\textwidth}
+	\includegraphics[width=1.0\textwidth]{GreenMonster.jpg} \\
+\end{column}
+\end{columns}
+\end{frame}
+\subsection{EMOA}
+\begin{frame}
+  \frametitle{Evolutionary Multi-Objective Optimization Algorithms}
 \begin{columns}
 \begin{column}{0.65\textwidth}
   \begin{itemize}
@@ -189,39 +236,63 @@
 			\item User-to-Service Distance (USD)
 		\end{enumerate}
 	\item Three Steps in EMOA: 
-		\begin{itemize}
+		\begin{enumerate}
 			\item Initialization
 			\item Evolution
 			\item Termination
-		\end{itemize}
+		\end{enumerate}
   \end{itemize}
 \end{column}
 \begin{column}{0.35\textwidth}
 \includegraphics[width=.95\textwidth]{Individual.png} \\
 \tiny{Example of an Individual. $S_i$ indicates a service, $D_j$ indicates a data center.}
+\linebreak
+\linebreak
+\linebreak
+
 \end{column}
 \end{columns}
 
 
 \end{frame}
  	
-\subsection[Intialization]{EMOA Intialization}
-
+\subsection{EMOA Steps}
 \begin{frame}
-\frametitle{EMOA Intialization}
+\frametitle{EMOA Initialization}
   \begin{itemize}
 	\item Individuals length is equivalent to number of services.
+	\linebreak
+	\linebreak
 	\item Each service is assigned to a random data center. 
+	\linebreak
+	\linebreak
 	\item Capacity aware randomization.
-	\item Creates 100 individuals.
+	\linebreak
+	\linebreak
+	\item Creates 100 individuals in the first generation.
   \end{itemize}
 \end{frame}
 
-\subsection[Evolution]{EMOA Evolution}
 \begin{frame}
-\frametitle{EMOA Evolution}
-\begin{columns}
-\begin{column}{0.65\textwidth}
+	\frametitle{EMOA Evolution}
+	Binary Tournament
+	\begin{itemize}
+		\item Best parent selection of two randomly selected individuals: \emph{i}, \emph{j}
+		\item Constrained-dominance 
+		\linebreak
+		\linebreak
+		An individual is constrained-dominant if:
+			\begin{itemize}
+				\item both \emph{i}, \emph{j} are have service violations, the individual with minimum of number of service violations
+				\item \emph{i} has service violations and \emph{j} doesn't, \emph{j} is constrained-dominant
+				\item both \emph{i}, \emph{j} don't have service violations, individual with greater or equal objective values in all objectives
+			\end{itemize}
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{EMOA Evolution continued and Termination}
   \begin{itemize}
 	\item Transformations
 		\begin{itemize}
@@ -230,74 +301,157 @@
 		\item Local Search (10\%)
 		\item Elitism (N+N)
 		\end{itemize}
-	\item Transformations occur over 100 Generations.
+	\item Termination: Transformations occur over 100 Generations.
   \end{itemize}
-\end{column}
-\begin{column}{0.35\textwidth}
-To add: pictures of transformations
-%\includegraphics[width=.95\textwidth]{Individual.png} \\
-%\tiny{Example of an Individual. $S_i$ indicates a service, $D_j$ indicates a data center.}
-\end{column}
-\end{columns}
-\end{frame}
-
-\subsection[Termination]{EMOA Termination}
-\begin{frame}
-\frametitle{Evolutionary Multi-Objective Optimization Algorithm (EMOA)}
-\begin{columns}
-\begin{column}{0.65\textwidth}
-  \begin{itemize}
-  	\item EMOAs are based upon biological principles.
-	\item Individuals form a population.
-	\item Multiple Optimizations and Fitness
-	\item Transformations
-		\begin{itemize}
-		\item Crossover
-		\item Mutation
-		\item Local Search
-		\item Elitism
-		\end{itemize}
-	\item Transformations occur over a specified number of generations.
-	\item Individuals that have the lowest fitness are the most optimized to all optimization. 
-  \end{itemize}
-\end{column}
-\begin{column}{0.35\textwidth}
-\includegraphics[width=.95\textwidth]{Individual.png} \\
-\tiny{Example of an Individual. $S_i$ indicates a service, $D_j$ indicates a data center.}
-\end{column}
-\end{columns}
+\includegraphics[width=.5\textwidth]{Crossover.png}
+\includegraphics[width=.5\textwidth]{Mutation.png}
 \end{frame}
 
 \subsection[Simulations]{Green Monster Simulations}
 
 \begin{frame}
-\frametitle{Run Configurations}
-\begin{description}[align=left, leftmargin=*]
-{\small
-\item[Population Initialization] Randomly assigned services to data centers
-\item[Optimizations] Maximization of Renewable Energy (RE), Minimization of Cooling Energy (CE) User-to-Service Distance USD
-\item[Transform Percentages] crossover (90\%) mutation (10\%)
-\item[Local Search Rate] 10\%
-\item[Generations] 100
-\item[Population Size Per Gen] 1,000 (3 runs) and 10,000 (1 run)
-\item[Elitism] N+N\%
-}
-\end{description}
+\frametitle{Simulations}
+	Simulated in nine different countries in Europe. \linebreak
+	\linebreak
+	Temperatures from 2010 real-world data.
+	\linebreak
+	\linebreak
+	Renewable energy of each country from real-world 2007-2009 data. 
+	\linebreak
+	\linebreak
+	Each data center had
+		\begin{itemize}
+			\item 8-200 servers
+			\item 16-400 services
+			\item 3 types of service voice, data, video
+	
+		\end{itemize}
+		EMOA run bi-weekly for 12 simulated months.
 \end{frame}
 
 \section[GRMP-Q]{Gossip-based Resource Allocation}
 
 \begin{frame}
-	\frametitle{Gossip}
-	
+	\frametitle{Gossip-based Resource Allocation (GRMP-Q)}
+		\includegraphics[width=.5\textwidth]{Cloud.jpg}
+
+	\begin{itemize}
+		\item Middle-ware for a single data center.
+		\item Attempts to reduce number of running servers using gossip protocol.
+		\item Assume that all servers have identical specifications.
+		\item Two Objectives:
+			\begin{enumerate}
+				\item Satisfy user demand.
+				\item Minimize power consumption.
+			\end{enumerate}
+	\end{itemize}
 \end{frame}
+
+\begin{frame}
+	\frametitle{GRMP-Q Set-up}
+	
+	\begin{itemize}
+		\item \emph{N} servers
+		\item Service $S_i$
+		\item Demand of single server  \emph{n} for a service $S_i$, $\omega$
+		\begin{equation}
+\omega_{(S_{i},n)} = \alpha_{(S_{i},n)} \omega_{S_i} \text{\emph{~such that~}} \alpha_{(S_{i},n)} \geq 0,~ \sum_{n=1}^{N} \alpha_{(S_{i},n)} = 1 \label{eq:1}
+\end{equation}
+	\item $\alpha$ is portion of demand on server \emph{n}
+	\item Configuration matrix is all the  $\alpha 's$ in matrix form.
+	\item Configuration matrix updated on load changes
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gossip Protocol}
+	\begin{itemize}
+		\item To Transfer Services to another server:
+			\begin{enumerate}
+				\item Initialization: starts gossip-protocol with current configuration matrix.
+				\item Peer Selection: 
+					\begin{itemize}
+						\item Selection of \emph{j} from $N_n$, servers with similar services to \emph{n}\\
+					$p = \frac{|N_{n}|}{1+|N_{n}|}$
+						
+						\item Selection from different services 1-p
+					\end{itemize}
+					
+				\item Migration Calculation:
+				\begin{itemize}
+				\item Calculate relative demand of \emph{j} and \emph{n}, $y_n$ where \\
+				$y_n = \sum_{i=1}^M \frac{\omega_{(S_i,n)}}{\Omega} \textit{~where M is the total num of services}$
+				\item if $y_n+y_j \geq 2$, assumes overloaded cloud.
+				\item if $y_n+y_j < 2$, assumes underloaded cloud.
+				
+				\end{itemize}
+				\item Migration:
+				\begin{itemize}
+				\item Underload: Packs server with highest relative demand so that equals $\Omega$.
+				\item Overload: Pack excess to a new service in which $\alpha = 0$ in the configuration matrix. 
+				
+				\end{itemize}
+			\end{enumerate} 
+	\end{itemize}
+\end{frame}
+
 
 \section[Results]{Results}
 \subsection{Green Monster}
+\begin{frame}
+	\frametitle{Green Monster Results}
+	Two Benchmark algorithms: Static and Random
+	\begin{itemize}
+		\item Increased about 33.3\% in renewable energy consumption.
+	\item Reduced cooling energy consumption by 3.2\%
+	\item Reduced USD to 23.4\%	
+	\end{itemize}
+
+	
+	\begin{table}[tb]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+    \hline
+    \multicolumn{4}{|c|}{\textbf{Daily Averaged Objective Values for Green Monster}} \\
+    \hline
+    & Renewable &  Cooling & User-to-Service \\
+    & Energy & Energy & Distance \\
+    \hline
+    Static & 324.5 & 949.58 & 0 \\
+    Random & 327.3 & 947.34 & 487378\\
+   	Green Monster & 438.5 & 919.02 & 373172\\
+    \hline
+\end{tabular}
+\caption{Daily averaged objective values for static placement, random placement, and Green Monster. RE and CE are in MWh. USD is presumed to be in meters. }
+\label{tab:GMV}
+\end{center}
+\end{table}
+	
+\end{frame}
 \subsection{GRMP-Q}
-
-\section[Conclusions]{Conclusions}
-
+\begin{frame}
+	\frametitle{GRMP-Q Results}
+	Simulation with 10,000 servers.
+	\begin{itemize}
+		\item Reduced energy consumption by 80\% at 10\% CPU demand.
+		\item No reduction in overload.
+		\item Scalable to 160,000 servers.
+	\end{itemize}
+	
+	\includegraphics[width=.7\textwidth]{image.png}
+	
+\end{frame}
+\section{Conclusions}
+\begin{frame}
+	\frametitle{Conclusions}
+	\begin{itemize}
+		\item Implementing energy optimization algorithms important for a green cloud. 
+		\linebreak
+		\item Simulated results, need to obtain experimental results.
+		\linebreak
+		\item Since algorithms are distinct could be combined for greater savings.
+	\end{itemize}
+\end{frame}
 \section*{References}
 
 \begin{frame} 
